@@ -41,5 +41,4 @@ variable "shards" {
 # list of subnet cidrs for each environment that need access to this rds cluster
 variable "subnet-cidrs" {
   type = list(string)
-  }
 }

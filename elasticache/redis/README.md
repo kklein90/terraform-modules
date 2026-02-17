@@ -38,7 +38,7 @@ Deployment subnets are dynamically looked up based on the presense of a metadata
 - service
 - environment
 - vpc-name
-- subnet-cidrs - list of subnets that can access this redis instance/cluster
+- subnet-cidrs - list of subnets that can access this redis instance/cluster, in list notation... ["",""]
 - region
 - cluster-type - single or multi
 - node-type - cache-XX-size
