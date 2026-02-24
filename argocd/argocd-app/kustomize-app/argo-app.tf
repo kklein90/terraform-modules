@@ -21,15 +21,15 @@
 #   }
 # }
 
-resource "argocd_repository" "n8n_repo" {
-  repo            = var.repo-rul
+resource "argocd_repository" "repo" {
+  repo            = var.repo-url
   name            = var.app-name
   type            = "git"
   ssh_private_key = var.github-key
   project         = "default"
 }
 
-resource "argocd_application" "n8n" {
+resource "argocd_application" "application" {
   metadata {
     name      = var.app-name
     namespace = var.name-space
