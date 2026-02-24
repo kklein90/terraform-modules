@@ -32,7 +32,7 @@ resource "argocd_repository" "repo" {
 resource "argocd_application" "application" {
   metadata {
     name      = var.app-name
-    namespace = var.name-space
+    namespace = var.namespace
   }
 
   spec {
@@ -68,5 +68,5 @@ resource "argocd_application" "application" {
     }
   }
 
-  depends_on = [argocd_repository.n8n_repo]
+  depends_on = [argocd_repository.repo]
 }
