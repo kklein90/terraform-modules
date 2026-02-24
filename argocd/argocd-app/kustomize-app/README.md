@@ -1,7 +1,6 @@
 # argocd-app terraform module
 
-\*\*Note: This module reads existing resources as data objects. Review the data-objects.tf file
-to familiarize youreself with those objects.
+Create Argocd resources, including cluster deployment & apps for either helm or kustomize deployment
 
 If deploying to any DR environment (ideally after the other env's have had everything imported, or for testing):
 
@@ -15,6 +14,9 @@ If deploying to any DR environment (ideally after the other env's have had every
 
 ## Creates
 
+- Argocd repo (github)
+- Argocd application
+
 ### argocd-app
 
 **NOTE: this is not for deploying ArgoCD, only your apps to an existing ArgoCD instance.**
@@ -23,20 +25,18 @@ If deploying to any DR environment (ideally after the other env's have had every
 
 ## Required variables
 
-- << add bulleted list of required vairables, with description & validation requirements >>
+- argocd-pw : as named
+- github-key : SSH key for accessing github repo
+- repo-url : repo URL (ssh)
+- app-name : name of the app in Argocd
+- env : kustomize overlay directory
+- namespace : K8s namespace to deploy app to
 
 ## Data sources
 
 This module identifies the following existing resources, based on the project variable:
 
-- AWS current region
-- Available AZ's
-- VPC Id
-- IGW Id
-- NATGW Id
-- Peering connection ID
-- Subnets (data, app & public)
-- << add any addition data look ups you create >>
+- nonoe
 
 ## Outputs
 
