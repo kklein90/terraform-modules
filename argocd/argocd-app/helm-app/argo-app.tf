@@ -21,13 +21,13 @@
 #   }
 # }
 
-resource "argocd_repository" "repo" {
-  repo            = var.repo-url
-  name            = var.app-name
-  type            = "git"
-  ssh_private_key = var.github-key
-  project         = "default"
-}
+# resource "argocd_repository" "repo" {
+#   repo            = var.repo-url
+#   name            = var.app-name
+#   type            = "git"
+#   ssh_private_key = var.github-key
+#   project         = "default"
+# }
 
 resource "argocd_application" "helm_application" {
   metadata {
@@ -73,5 +73,5 @@ resource "argocd_application" "helm_application" {
     }
   }
 
-  depends_on = [argocd_repository.repo]
+  # depends_on = [argocd_repository.repo]
 }
