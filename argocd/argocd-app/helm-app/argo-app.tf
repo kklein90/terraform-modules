@@ -51,7 +51,7 @@ resource "argocd_application" "helm_application" {
       helm {
         release_name = var.release-name
         parameter {}
-        values_files = var.values-files
+        value_files = var.values-files
       }
     }
 
