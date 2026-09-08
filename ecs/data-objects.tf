@@ -85,3 +85,38 @@ data "aws_wafv2_web_acl" "external" {
   name  = "asterkey-waf-${var.env}-${var.region}"
   scope = "REGIONAL"
 }
+## subnets & vpcs
+variable "vpc-name" {
+  type = map(string)
+  default = {
+    develop    = "asterkey-development"
+    staging    = "asterkey-staging"
+    production = "asterkey-prod"
+  }
+}
+
+data "aws_vpc" "vpc1" {
+  filter {
+    name   = "tag:Name"
+    values = ["${lookup(var.vpc-name, "${var.account}")}"]
+  }
+}
+
+data "aws_caller_identity" "current" {}
+
+# svc subnets
+data "aws_subnets" "services_subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.vpc1.id]
+  }
+  filter {
+    name   = "tag:usage"
+    values = ["services"]
+  }
+}
+
+data "aws_subnet" "services_subnet" {
+  for_each = toset(data.aws_subnets.services_subnets.ids)
+  id       = each.value
+}
